@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.dao.BookDao;
 import pl.coderslab.entity.Book;
 
+import java.util.Optional;
+
 @Controller
 public class BookController {
     private final BookDao bookDao;
@@ -30,8 +32,15 @@ public class BookController {
     @RequestMapping("/book/get/{id}")
     @ResponseBody
     public String getBook(@PathVariable long id) {
-        Book book = bookDao.findById(id);
-        return book.toString();
+//        try {
+//            Book book = bookDao.findById(id);
+//            return book.toString();
+//        } catch (NullPointerException e){
+//            return "Ksiązka o zadanym ID nie znajduje sie w bazie";
+//        }
+        return Optional.ofNullable(bookDao.findById(id))
+                .map(Book::toString)
+                .orElse ( "Ksiązka o zadanym ID nie znajduje sie w bazie");
     }
 
     @RequestMapping("/book/update/{id}/{title}")
