@@ -41,5 +41,9 @@ public class BookDao {
                 .getResultList();
     }
 
+    public List<Book> findAllWithPublisher(){
+        return entityManager.createQuery("select b FROM Book b JOIN b.publisher", Book.class).getResultList();
+    }
+
 
 }
