@@ -9,6 +9,7 @@ import pl.coderslab.entity.Book;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Repository
 @Transactional
@@ -16,7 +17,7 @@ public class BookDao {
 
     @PersistenceContext
     private EntityManager entityManager;
-    public void saveBook (Book book){
+    public void save (Book book){
         entityManager.persist(book);
     }
 
@@ -29,6 +30,15 @@ public class BookDao {
 
     public void delete(Book book) {
         entityManager.remove(entityManager.contains(book) ? book : entityManager.merge(book));
+    }
+
+    public List<Book> findAll(){
+        return entityManager.createQuery("select b FROM Book b").getResultList();
+    }
+    public List<Book> findAllByRating(int rat){
+        return entityManager.createQuery("select b FROM Book b WHERE b.rating = :rating", Book.class)
+                .setParameter("rating", rat) //ustawiam rat jako "rating" w tabeli
+                .getResultList();
     }
 
 

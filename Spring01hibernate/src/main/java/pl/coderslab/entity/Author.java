@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "authors")
@@ -16,4 +18,5 @@ public class Author {
     private Long id;
     private String firstName;
     private String lastName;
+
 }

@@ -57,4 +57,10 @@ public class AuthorController {
         authorDao.delete(author);
         return "Autor o id : " + id + " został usunięty z bazy";
     }
+
+    @RequestMapping("/all")
+    @ResponseBody
+    public String findAll(){
+        return authorDao.findAll().toString();
+    }
 }

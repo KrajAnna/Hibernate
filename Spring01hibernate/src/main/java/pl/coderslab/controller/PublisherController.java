@@ -54,4 +54,13 @@ public class PublisherController {
         publisherDao.delete(publisher);
         return "Wydawca o id : " + id + " został usunięty z bazy";
     }
+
+    @RequestMapping("/all")
+    @ResponseBody
+    public String findAll() {
+
+        return publisherDao.findAll().toString();
+    }
+
+
 }
