@@ -3,6 +3,7 @@ package pl.coderslab.app;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -12,6 +13,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import pl.coderslab.converter.PublisherConverter;
 
 import javax.persistence.EntityManagerFactory;
 import java.nio.charset.StandardCharsets;
@@ -44,5 +46,14 @@ public class AppConfig implements WebMvcConfigurer {
         viewResolver.setPrefix("/WEB-INF/");
         viewResolver.setSuffix(".jsp");
         return viewResolver;
+    }
+
+    @Bean
+    public PublisherConverter publisherConverter(){
+        return new PublisherConverter();
+    }
+    @Override
+    public void addFormatters(FormatterRegistry registry){
+        registry.addConverter(publisherConverter());
     }
 }
