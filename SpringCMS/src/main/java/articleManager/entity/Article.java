@@ -1,4 +1,4 @@
-package ArticleManager;
+package articleManager.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
