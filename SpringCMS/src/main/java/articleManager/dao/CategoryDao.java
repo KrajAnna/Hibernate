@@ -3,12 +3,16 @@ package articleManager.dao;
 import articleManager.entity.Article;
 import articleManager.entity.Author;
 import articleManager.entity.Category;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Repository
+@Transactional
 public class CategoryDao {
     @PersistenceContext
     private EntityManager entityManager;

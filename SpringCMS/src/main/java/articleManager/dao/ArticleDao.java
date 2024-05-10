@@ -1,12 +1,16 @@
 package articleManager.dao;
 
 import articleManager.entity.Article;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import java.util.List;
 
+@Repository
+@Transactional
 public class ArticleDao {
     @PersistenceContext
     private EntityManager entityManager;
@@ -27,5 +31,9 @@ public class ArticleDao {
     public List<Article> findAll(){
         Query query = entityManager.createQuery("select ar from Article ar");
         return query.getResultList();
+    }
+    public List<Article> findQty(int qty){
+        Query query = entityManager.createQuery("select ar from Article ar");
+        return query.setMaxResults(qty).getResultList();
     }
 }

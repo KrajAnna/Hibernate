@@ -1,8 +1,12 @@
 package articleManager.entity;
 
+import lombok.Data;
+import lombok.ToString;
+
 import javax.persistence.*;
 
 @Entity
+@ToString
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

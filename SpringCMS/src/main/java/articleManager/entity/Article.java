@@ -1,10 +1,14 @@
 package articleManager.entity;
 
+import lombok.Data;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Data
 public class Article {
 
     @Id
@@ -20,4 +24,16 @@ public class Article {
     private LocalDateTime created;// (wartość ma być automatycznie dodawana podczas zapisu)
     private LocalDateTime updated; //(wartość ma być automatycznie zmieniana podczas edycji).
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author=" + (author != null ? author.getId() : "null") + // Avoid calling author.toString()
+                ", categories=" + categories + // Avoid calling categories.toString() directly
+                ", content='" + content + '\'' +
+                ", created=" + created +
+                ", updated=" + updated +
+                '}';
+    }
 }
