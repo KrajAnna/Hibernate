@@ -4,6 +4,8 @@ import articleManager.entity.Article;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import java.util.List;
 
 public class ArticleDao {
     @PersistenceContext
@@ -20,5 +22,10 @@ public class ArticleDao {
     }
     public void delete(Article article) {
         entityManager.remove(entityManager.contains(article) ? article : entityManager.merge(article));
+    }
+
+    public List<Article> findAll(){
+        Query query = entityManager.createQuery("select ar from Article ar");
+        return query.getResultList();
     }
 }
