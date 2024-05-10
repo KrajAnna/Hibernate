@@ -6,7 +6,7 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@ToString
+@Data
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,4 +14,6 @@ public class Category {
     @Column(nullable = false)
     private String name;
     private String description;
+
+
 }

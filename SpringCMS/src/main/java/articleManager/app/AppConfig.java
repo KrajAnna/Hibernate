@@ -40,4 +40,11 @@ public class AppConfig implements WebMvcConfigurer {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(entityManagerFactory);
         return jpaTransactionManager;
     }
+    @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/");
+        viewResolver.setSuffix(".jsp");
+        return viewResolver;
+    }
 }
