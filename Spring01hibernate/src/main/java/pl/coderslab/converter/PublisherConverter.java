@@ -8,7 +8,7 @@ import pl.coderslab.entity.Publisher;
 
 public class PublisherConverter implements Converter <String, Publisher> {
 
-    @Autowired
+    @Autowired // zamiast konstruktora
     private PublisherDao publisherDao;
 
     @Override

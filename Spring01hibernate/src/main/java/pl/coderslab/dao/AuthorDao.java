@@ -32,6 +32,7 @@ public class AuthorDao {
     }
 
     public List<Author> findAll(){
+
         return entityManager.createQuery("select a FROM Author a").getResultList();
     }
 

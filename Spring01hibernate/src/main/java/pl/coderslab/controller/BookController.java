@@ -1,6 +1,7 @@
 package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,6 +75,12 @@ public class BookController {
         return "Ksiązka zaktualizowana: " + book.toString();
     }
 
+    @RequestMapping("/deleteConf/{id}")
+    public String deleteBookConf(@PathVariable long id, Model model) {
+        //tu przekaz atrybut id do widoku pod nazwą "id"
+        model.addAttribute("id", id);
+        return "book/doublecheck" ;
+    }
     @RequestMapping("/delete/{id}")
     @ResponseBody
     public String deleteBook(@PathVariable long id) {
@@ -81,6 +88,7 @@ public class BookController {
         bookDao.delete(book);
         return "Deleted";
     }
+
 
     @GetMapping("/all")
     @ResponseBody

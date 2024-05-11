@@ -6,7 +6,6 @@ import pl.coderslab.dao.BookDao;
 import pl.coderslab.dao.PublisherDao;
 import pl.coderslab.entity.*;
 import org.springframework.ui.Model;
-import pl.coderslab.task3.Student;
 
 import java.util.List;
 
@@ -21,6 +20,7 @@ public class BookFormController {
         this.publisherDao = publisherDao;
     }
 
+
     @ModelAttribute("publishers")
     public List<Publisher> publishers() {
         return publisherDao.findAll();
@@ -32,10 +32,15 @@ public class BookFormController {
     }
 
     @PostMapping("/form")
-    @ResponseBody
     public String sendForm(Book book) {
         bookDao.save(book);
-        return "The Book added to database: " + book.toString();
+        return "redirect:/bookForm/list";
+    }
+
+    @GetMapping("/list")
+    public String findAll(Model model){
+        model.addAttribute("books", bookDao.findAll());
+        return "book/list";
     }
 
 
