@@ -44,6 +44,11 @@ public class BookFormController {
         if (bindingResult.hasErrors()) {
             return "book/form";
         } else {
+            if (book.getId() != null) {
+                //bookRepository.update(book);
+            } else {
+                bookRepository.save(book);
+            }
             bookRepository.save(book);
             return "redirect:/bookForm/list";
         }

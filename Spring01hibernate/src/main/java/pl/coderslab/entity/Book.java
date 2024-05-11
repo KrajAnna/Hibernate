@@ -38,6 +38,10 @@ public class Book {
     @NotNull
     private Publisher publisher;
 
+    @ManyToOne
+    private Category category;
+
+
     @Min(2)
     private Integer pages;
 
