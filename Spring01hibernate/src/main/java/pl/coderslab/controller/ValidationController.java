@@ -3,12 +3,14 @@ package pl.coderslab.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.coderslab.entity.Book;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,8 +24,7 @@ public class ValidationController {
     }
 
     @GetMapping("/validate")
-    @ResponseBody
-    public String validate() {
+    public String validate(Model model) {
         Book book = new Book();
         book.setTitle("abd");
         book.setRating(15);
@@ -41,13 +42,13 @@ public class ValidationController {
 //        }
 
         if (!constraintViolations.isEmpty()){
-            String result = constraintViolations.stream()
-                    .map(c->c.getPropertyPath()+ "-------->" + c.getMessage())
-                    .collect(Collectors.joining(", "));
-            return result;
-        } else {
-            return "brak blędów";
+            List<String> result = constraintViolations.stream()
+                    .map(c->c.getPropertyPath().toString()+ ": " + c.getMessage())
+                    .collect(Collectors.toList());
+            model.addAttribute("result", result);
+
         }
+        return "book/validation";
 
 
     }
