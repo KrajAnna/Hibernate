@@ -9,6 +9,7 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import pl.coderslab.converter.PublisherConverter;
 
 import javax.persistence.EntityManagerFactory;
+import javax.validation.Validator;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Locale;
@@ -64,5 +66,10 @@ public class AppConfig implements WebMvcConfigurer {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         localeResolver.setDefaultLocale(new Locale("pl","PL"));
         return localeResolver;
+    }
+
+    @Bean
+   public Validator validator(){
+        return new LocalValidatorFactoryBean();
     }
 }
