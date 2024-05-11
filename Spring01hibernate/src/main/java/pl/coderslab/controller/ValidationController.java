@@ -43,7 +43,7 @@ public class ValidationController {
 
         if (!constraintViolations.isEmpty()){
             List<String> result = constraintViolations.stream()
-                    .map(c->c.getPropertyPath().toString()+ ": " + c.getMessage())
+                    .map(c->c.getPropertyPath()+": " + c.getMessage())
                     .collect(Collectors.toList());
             model.addAttribute("result", result);
 
