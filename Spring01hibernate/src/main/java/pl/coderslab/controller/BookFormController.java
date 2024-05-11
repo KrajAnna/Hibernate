@@ -1,12 +1,14 @@
 package pl.coderslab.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.dao.BookDao;
 import pl.coderslab.dao.PublisherDao;
 import pl.coderslab.entity.*;
 import org.springframework.ui.Model;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -32,13 +34,18 @@ public class BookFormController {
     }
 
     @PostMapping("/form")
-    public String sendForm(Book book) {
-        if (book.getId() != null) {
-            bookDao.update(book);
+    public String sendForm(@Valid Book book, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "book/form";
         } else {
-            bookDao.save(book);
+            if (book.getId() != null) {
+                bookDao.update(book);
+            } else {
+                bookDao.save(book);
+            }
+            return "redirect:/bookForm/list";
         }
-        return "redirect:/bookForm/list";
+
     }
 
     @GetMapping("/list")

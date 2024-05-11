@@ -22,7 +22,9 @@ public class BookDao {
     }
 
     public Book findById(long id) {
-        return entityManager.find(Book.class, id);
+        return entityManager.createQuery("SELECT b FROM Book b where b.id = :id", Book.class)
+                .setParameter("id", id)
+                .getSingleResult();
     }
     public void update(Book book) {
         entityManager.merge(book);

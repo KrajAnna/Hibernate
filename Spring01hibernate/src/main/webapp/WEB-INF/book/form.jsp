@@ -13,23 +13,36 @@
 </head>
 <body>
 <form:form modelAttribute="book" method="post" action="/bookForm/form">
-  <form:hidden path="id"/>
-  <label>
-    Title: <form:input path="title"/>
-  </label>
-  <label>
-    Rating: <form:input path="rating" type = "number"/>
-  </label>
-  <label>
-    Description: <form:textarea path="description" rows="5" cols="20"/>
-  </label>
-  <label>
-    Publisher: <form:select path="publisher" itemLabel="name" itemValue="id" items="${publishers}"/>
-<%--    name to atrubut z publishera--%>
-  </label>
-  <label>
-    <input type="submit" value="SUBMIT">
-  </label>
+    <form:hidden path="id"/>
+
+    <label>
+        <p> Title: <form:input path="title"/><form:errors path="title"/></p>
+    </label>
+    <label>
+        <p>
+            Rating: <form:input path="rating" type="number"/>
+            <form:errors path="rating"/>
+        </p>
+
+    </label>
+    <label>
+        <p> Description: <form:textarea path="description" rows="5" cols="20"/>
+            <form:errors path="description"/>
+        </p>
+
+    </label>
+    <label>
+        <p>
+                <%--    name to atrubut z publishera--%>
+            Publisher: <form:select path="publisher" itemLabel="name" itemValue="id" items="${publishers}"/>
+            <form:errors path="publisher"/>
+        </p>
+    </label>
+    <label>
+        <p>
+            <input type="submit" value="SUBMIT">
+        </p>
+    </label>
 </form:form>
 </body>
 </html>
