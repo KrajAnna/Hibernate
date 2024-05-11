@@ -9,12 +9,16 @@ import pl.coderslab.entity.Publisher;
 
 import java.util.List;
 
-public interface BookRepository extends JpaRepository<Book,Long> {
+public interface BookRepository extends JpaRepository<Book, Long> {
     public Book findOneByTitle(String title);
+
     public Book findFerrariByTitle(String title);
+
     public List<Book> getAllByTitle(String title);
+
     //public List<Book> readAllByAuthors(Author author);
     public List<Book> queryByPagesIsGreaterThanEqual(Integer pages);
+
     //  public List<Book> findFirst33OrderByPagesDesc();
     @Query("select b from Book b order by b.pages") //customowa metoda, poprzez definicje query
     public List<Book> fundFirs8ByCos();
@@ -25,11 +29,15 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 //    metodę wyszukującą książki dla zadanego id kategorii
 
     public List<Book> findBooksByTitle(String title);
+
     public List<Book> findBooksByCategory(Category category);
+
     public List<Book> findBooksByCategory_Id(Long id);
-    //public List<Book> getAllByAuthor(Author author);
-    public List<Book> findBookByPublisher(Publisher publisher);
-    public Book findFirstByOrderByCategoryAsc();
+
+    //public List<Book> findBooksByAuthors(Author author); żle?
+ public List<Book> findBooksByPublisher(Publisher publisher);
+ public List<Book> findBooksByRating (Integer rating);
+//public Book findFirstByOrderByCategoryAsc(Category cat); żle?
 
 
 }

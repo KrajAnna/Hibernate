@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import javax.validation.Validator;
 import java.util.List;
 
-@Transactional
+//@Transactional
 @Controller
 @RequestMapping("/bookForm")
 public class BookFormController {
@@ -81,6 +81,15 @@ public class BookFormController {
     public String deleteBook(@PathVariable long id) {
         bookRepository.deleteById(id);
         return "redirect:/bookForm/list";
+    }
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test() {
+        Category category = new Category();
+        category.setId(1L);
+        category.setName("category");
+        return bookRepository.findFirstByOrderByCategoryAsc(category).toString();
     }
 
 
