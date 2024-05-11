@@ -3,6 +3,7 @@ package pl.coderslab.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.validator.constraints.pl.NIP;
 import org.hibernate.validator.constraints.pl.PESEL;
 
 import javax.persistence.*;
@@ -17,18 +18,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Author {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
     private String firstName;
     @NotNull
     private String lastName;
+    @NotNull
     @PESEL
     private String pesel;
+    @NotNull
     @Email
     private String email;
-
-
 
 
 }

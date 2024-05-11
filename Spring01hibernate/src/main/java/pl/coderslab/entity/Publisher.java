@@ -17,8 +17,10 @@ public class Publisher {
     private Long id;
     @NotNull
     private String name;
+    @NotNull
     @NIP
     private String nip;
+    @NotNull
     @REGON
     private String regon;
 }
