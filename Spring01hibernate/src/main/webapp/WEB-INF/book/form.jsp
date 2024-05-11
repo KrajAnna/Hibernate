@@ -12,7 +12,8 @@
     <title>Form</title>
 </head>
 <body>
-<form:form modelAttribute="book" method="POST">
+<form:form modelAttribute="book" method="post" action="/bookForm/form">
+  <form:hidden path="id"/>
   <label>
     Title: <form:input path="title"/>
   </label>

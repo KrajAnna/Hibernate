@@ -34,8 +34,8 @@
         <td>${b.rating}</td>
         <td>${b.description}</td>
         <td>${b.publisher.name}</td>
-        <td><a href="/book/deleteConf/${b.id}">Link</a></td>
-        <td><a href="/book/deleteConf/${b.id}">Link</a></td>
+        <td><a href="/book/edit/${b.id}">Edit</a></td>
+        <td><a href="/book/confirmDel/${b.id}">Del</a></td>
     </tbody>
     </c:forEach>
 </table>

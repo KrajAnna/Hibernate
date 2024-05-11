@@ -33,7 +33,11 @@ public class BookFormController {
 
     @PostMapping("/form")
     public String sendForm(Book book) {
-        bookDao.save(book);
+        if (book.getId() != null) {
+            bookDao.update(book);
+        } else {
+            bookDao.save(book);
+        }
         return "redirect:/bookForm/list";
     }
 
@@ -41,6 +45,25 @@ public class BookFormController {
     public String findAll(Model model){
         model.addAttribute("books", bookDao.findAll());
         return "book/list";
+    }
+    @GetMapping("/edit/{id}")
+    public String editBook(@PathVariable long id, Model model) {
+        Book book = bookDao.findById(id);
+        model.addAttribute("book", book);
+        return "/book/form";
+    }
+
+    @GetMapping("/confirmDel/{id}")
+    public String confirmDel(@PathVariable long id, Model model) {
+        Book book = bookDao.findById(id);
+        model.addAttribute("book", book);
+        return "/book/confirmDel";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteBook(@PathVariable long id) {
+        bookDao.delete(bookDao.findById(id));
+        return "redirect:/bookForm/list";
     }
 
 
