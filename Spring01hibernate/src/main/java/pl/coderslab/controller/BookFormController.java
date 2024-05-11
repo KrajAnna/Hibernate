@@ -9,10 +9,12 @@ import pl.coderslab.entity.*;
 import org.springframework.ui.Model;
 import pl.coderslab.repository.BookRepository;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import javax.validation.Validator;
 import java.util.List;
 
+@Transactional
 @Controller
 @RequestMapping("/bookForm")
 public class BookFormController {

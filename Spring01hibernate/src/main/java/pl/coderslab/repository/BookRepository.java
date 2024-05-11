@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import pl.coderslab.entity.Author;
 import pl.coderslab.entity.Book;
 import pl.coderslab.entity.Category;
+import pl.coderslab.entity.Publisher;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public interface BookRepository extends JpaRepository<Book,Long> {
     public Book findOneByTitle(String title);
     public Book findFerrariByTitle(String title);
     public List<Book> getAllByTitle(String title);
-    public List<Book> readAllByAuthors(Author author);
+    //public List<Book> readAllByAuthors(Author author);
     public List<Book> queryByPagesIsGreaterThanEqual(Integer pages);
     //  public List<Book> findFirst33OrderByPagesDesc();
     @Query("select b from Book b order by b.pages") //customowa metoda, poprzez definicje query
@@ -23,9 +24,12 @@ public interface BookRepository extends JpaRepository<Book,Long> {
 //    metodę wyszukującą książki dla zadanej kategorii
 //    metodę wyszukującą książki dla zadanego id kategorii
 
-    public List<Book> findBookByTitle(String title);
-    public List<Book> findBookByCategory(Category category);
-    public List<Book> findBookByCategoryId(Long id);
+    public List<Book> findBooksByTitle(String title);
+    public List<Book> findBooksByCategory(Category category);
+    public List<Book> findBooksByCategory_Id(Long id);
+    //public List<Book> getAllByAuthor(Author author);
+    public List<Book> findBookByPublisher(Publisher publisher);
+    public Book findFirstByOrderByCategoryAsc();
 
 
 }
